@@ -1,0 +1,19 @@
+#container {
+  width: 425px;
+  height: 425px;
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.square {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+}
