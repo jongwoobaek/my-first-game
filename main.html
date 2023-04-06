@@ -9,11 +9,12 @@
     <title>과일찾기</title>
   </head>
   <body>
-    <div>
-      <h1>과일찾기</h1>
-      <h1 class="hidden">끝!!</h1>
+    <div id="main-div">
+      <h1 id="main-h1">과일찾기</h1>
+      <h1 id="endGame-h1" class="hidden">끝!!</h1>
       <button id="start-btn">시작</button>
       <button id="re-start-btn" class="hidden">재시작</button>
+      <button id="re-start-btn2" class="hidden">재시작</button>
       <!-- main page -->
       <div>
         <img
@@ -22,6 +23,18 @@
           width="400px"
           height="400px"
           id="main-img"
+        />
+      </div>
+
+      <!-- end page -->
+      <div>
+        <img
+          src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZnJ1aXRzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
+          alt=""
+          width="400px"
+          height="400px"
+          class="hidden"
+          id="game-over-img"
         />
       </div>
       <!-- game page -->
@@ -56,16 +69,7 @@
         </div>
       </div>
 
-      <div>
-        <img
-          src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZnJ1aXRzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-          alt=""
-          width="400px"
-          height="400px"
-          class="hidden"
-        />
-      </div>
-
+      <!-- game over page -->
       <h3 class="hidden">남은 시간 : 00초</h3>
       <h3 class="hidden">남은 과일 : 00개</h3>
     </div>
