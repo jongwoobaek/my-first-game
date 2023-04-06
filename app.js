@@ -41,7 +41,7 @@ function startGame() {
     } else {
       return;
     }
-  }, 3000);
+  }, 5000);
 }
 
 function reStartGame() {
@@ -63,6 +63,7 @@ function reStartGame() {
   }
 }
 
+// click event
 startBtn.addEventListener("click", startGame);
 reStartBtn.addEventListener("click", reStartGame);
 
