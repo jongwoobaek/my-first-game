@@ -4,12 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="app.css" />
     <title>과일찾기</title>
   </head>
   <body>
     <div>
       <h1>과일찾기</h1>
       <button>시작</button>
+      <button class="hidden">재시작</button>
+      <!-- main page -->
       <div>
         <img
           src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
@@ -17,6 +20,41 @@
           width="400px"
           height="400px"
         />
+      </div>
+      <!-- game page -->
+      <div id="container hideen">
+        <div class="square hidden">
+          <img
+            class="gameImg"
+            src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGZydWl0c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
+            alt=""
+          />
+        </div>
+
+        <div class="square hidden">
+          <img
+            class="gameImg"
+            src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGZydWl0c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
+            alt=""
+          />
+        </div>
+        <div class="square hidden">
+          <img
+            class="gameImg"
+            src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGZydWl0c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
+            alt=""
+          />
+        </div>
+        <div class="square hidden">
+          <img
+            class="gameImg"
+            src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGZydWl0c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
+            alt=""
+          />
+        </div>
+        <!-- game page -->
+        <h3 class="hidden">남은 시간 : 00초</h3>
+        <h3 class="hidden">남은 과일 : 00개</h3>
       </div>
     </div>
   </body>
