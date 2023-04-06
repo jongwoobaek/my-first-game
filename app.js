@@ -19,6 +19,29 @@ function startGame() {
   for (const el of h3) {
     el.classList.toggle("hidden");
   }
+
+  setTimeout(() => {
+    if (startBtn.classList.value) {
+      startBtn.classList.toggle("hidden");
+      reStartBtn.classList.toggle("hidden");
+      mainImg.classList.toggle("hidden");
+      container.classList.toggle("hidden");
+
+      for (const el of square) {
+        el.classList.toggle("hidden");
+      }
+
+      for (const el of h3) {
+        el.classList.toggle("hidden");
+      }
+
+      for (const img of gameImg) {
+        img.className = "game-img hidden";
+      }
+    } else {
+      return;
+    }
+  }, 3000);
 }
 
 function reStartGame() {
