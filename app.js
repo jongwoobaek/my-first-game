@@ -17,12 +17,13 @@ function startGame() {
   }
 
   for (const el of square) {
-    el.classList.remove("hidden");
+    el.classList.toggle("hidden");
   }
 
   for (const el of h3) {
-    el.classList.remove("hidden");
+    el.classList.toggle("hidden");
   }
 }
 
 startBtn.addEventListener("click", startGame);
+reStartBtn.addEventListener("click", startGame);
