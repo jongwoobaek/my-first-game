@@ -4,7 +4,7 @@
   background-color: white;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
 .square {
@@ -13,7 +13,7 @@
   border: 1px solid black;
 }
 
-.gameImg {
+.game-img {
   width: 200px;
   height: 200px;
 }
