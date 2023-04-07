@@ -25,11 +25,17 @@ let clickCounter = 0;
 //   }
 // }
 
+// const timer
+
+let timerId;
+
 function startGame() {
   startBtn.classList.toggle("hidden");
   reStartBtn.classList.toggle("hidden");
   mainImg.classList.toggle("hidden");
   container.classList.toggle("hidden");
+  checkArr.splice(0);
+  clickCounter = 0;
 
   for (const el of square) {
     el.classList.toggle("hidden");
@@ -39,7 +45,7 @@ function startGame() {
     el.classList.toggle("hidden");
   }
 
-  setTimeout(() => {
+  timerId = setTimeout(() => {
     if (startBtn.classList.value && mainImg.classList.value) {
       reStartBtn.classList.toggle("hidden");
       reStartBtn2.classList.toggle("hidden");
@@ -48,6 +54,7 @@ function startGame() {
       gameOverImg.classList.toggle("hidden");
       container.style.display = "none";
       checkArr.splice(0);
+      clickCounter = 0;
 
       for (const el of square) {
         el.classList.toggle("hidden");
@@ -59,14 +66,14 @@ function startGame() {
     } else {
       return;
     }
-  }, 5000);
-
-  return;
+  }, 3000);
 }
 
 // 리셋버튼을 두개를 만들어야 할듯..
 // 일단 얘는 게임 중간용이라 하자.
 function reStartGame() {
+  clearTimeout(timerId);
+
   startBtn.classList.toggle("hidden");
   reStartBtn.classList.toggle("hidden");
   mainImg.classList.toggle("hidden");
@@ -88,6 +95,8 @@ function reStartGame() {
 }
 
 function reStartGame2() {
+  clearTimeout(timerId);
+
   startBtn.classList.toggle("hidden");
   reStartBtn2.classList.toggle("hidden");
   mainImg.classList.toggle("hidden");
