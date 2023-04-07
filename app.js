@@ -15,19 +15,11 @@ const h3 = document.querySelectorAll("h3");
 const mainH1 = document.querySelector("#main-h1");
 const endH1 = document.querySelector("#endGame-h1");
 const checkArr = [];
-let resultArr;
+const resultArr = [];
+let timerId;
 let clickCounter = 0;
 
 // function
-// function cleanUpArr() {
-//   if (checkArr.length >= 2) {
-//     checkArr.splice(0);
-//   }
-// }
-
-// const timer
-
-let timerId;
 
 function startGame() {
   startBtn.classList.toggle("hidden");
@@ -45,28 +37,42 @@ function startGame() {
     el.classList.toggle("hidden");
   }
 
+  for (const img of gameImg) {
+    img.className = "game-img hidden";
+  }
+
+  resultArr.splice(0);
+
   timerId = setTimeout(() => {
-    if (startBtn.classList.value && mainImg.classList.value) {
-      reStartBtn.classList.toggle("hidden");
-      reStartBtn2.classList.toggle("hidden");
-      mainH1.classList.toggle("hidden");
-      endH1.classList.toggle("hidden");
-      gameOverImg.classList.toggle("hidden");
-      container.style.display = "none";
-      checkArr.splice(0);
-      clickCounter = 0;
+    if (resultArr.length === 4) {
+      clearTimeout(timerId);
+      alert("🎉");
+      location.reload();
 
-      for (const el of square) {
-        el.classList.toggle("hidden");
-      }
-
-      for (const img of gameImg) {
-        img.className = "game-img hidden";
-      }
-    } else {
       return;
+    } else {
+      if (startBtn.classList.value && mainImg.classList.value) {
+        reStartBtn.classList.toggle("hidden");
+        reStartBtn2.classList.toggle("hidden");
+        mainH1.classList.toggle("hidden");
+        endH1.classList.toggle("hidden");
+        gameOverImg.classList.toggle("hidden");
+        container.style.display = "none";
+        checkArr.splice(0);
+        clickCounter = 0;
+
+        for (const el of square) {
+          el.classList.toggle("hidden");
+        }
+
+        for (const img of gameImg) {
+          img.className = "game-img hidden";
+        }
+      } else {
+        return;
+      }
     }
-  }, 3000);
+  }, 5000);
 }
 
 // 리셋버튼을 두개를 만들어야 할듯..
@@ -92,6 +98,8 @@ function reStartGame() {
   for (const img of gameImg) {
     img.className = "game-img hidden";
   }
+
+  resultArr.splice(0);
 }
 
 function reStartGame2() {
@@ -110,6 +118,8 @@ function reStartGame2() {
   for (const el of h3) {
     el.classList.toggle("hidden");
   }
+
+  resultArr.splice(0);
 }
 
 // click event
@@ -139,15 +149,13 @@ reStartBtn2.addEventListener("click", reStartGame2);
           checkArr.length >= 2 &&
           checkArr[clickCounter - 1] === checkArr[clickCounter - 2]
         ) {
-          //   checkArr.splice(0);
-          //   clickCounter = 0;
+          resultArr.push(checkArr[clickCounter - 1]);
+          // resultArr.push(checkArr[clickCounter - 2]);
 
           return;
         }
       }, 650);
     });
-
-    // checkArr.splice(0);
   }
 })();
 
