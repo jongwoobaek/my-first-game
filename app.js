@@ -14,8 +14,17 @@ const container = document.querySelector("#container");
 const h3 = document.querySelectorAll("h3");
 const mainH1 = document.querySelector("#main-h1");
 const endH1 = document.querySelector("#endGame-h1");
+const checkArr = [];
+let resultArr;
+let clickCounter = 0;
 
 // function
+// function cleanUpArr() {
+//   if (checkArr.length >= 2) {
+//     checkArr.splice(0);
+//   }
+// }
+
 function startGame() {
   startBtn.classList.toggle("hidden");
   reStartBtn.classList.toggle("hidden");
@@ -38,6 +47,7 @@ function startGame() {
       endH1.classList.toggle("hidden");
       gameOverImg.classList.toggle("hidden");
       container.style.display = "none";
+      checkArr.splice(0);
 
       for (const el of square) {
         el.classList.toggle("hidden");
@@ -61,6 +71,8 @@ function reStartGame() {
   reStartBtn.classList.toggle("hidden");
   mainImg.classList.toggle("hidden");
   container.classList.toggle("hidden");
+  checkArr.splice(0);
+  clickCounter = 0;
 
   for (const el of square) {
     el.classList.toggle("hidden");
@@ -83,6 +95,8 @@ function reStartGame2() {
   endH1.classList.toggle("hidden");
   gameOverImg.classList.toggle("hidden");
   container.style.display = "";
+  checkArr.splice(0);
+  clickCounter = 0;
 
   for (const el of h3) {
     el.classList.toggle("hidden");
@@ -94,40 +108,129 @@ startBtn.addEventListener("click", startGame);
 reStartBtn.addEventListener("click", reStartGame);
 reStartBtn2.addEventListener("click", reStartGame2);
 
-const checkArr = [];
-let resultArr;
+(function changeImg() {
+  for (let i = 0; i < square.length; i++) {
+    square[i].addEventListener("click", () => {
+      gameImg[i].classList.toggle("hidden");
 
-square[0].addEventListener("click", () => {
-  gameImg[0].classList.toggle("hidden");
+      checkArr.push(gameImg[i].alt);
 
-  checkArr.push(gameImg[0].alt);
+      clickCounter++;
+      setTimeout(() => {
+        if (
+          checkArr.length < 2 ||
+          checkArr[clickCounter - 1] !== checkArr[clickCounter - 2]
+        ) {
+          gameImg[i].classList.toggle("hidden");
+          checkArr.splice(0);
+          clickCounter = 0;
+        }
 
-  setTimeout(() => {
-    if (checkArr[0] !== checkArr[1]) {
-      gameImg[0].classList.toggle("hidden");
-    } else {
-      return;
-    }
-  }, 1500);
-});
+        if (
+          checkArr.length >= 2 &&
+          checkArr[clickCounter - 1] === checkArr[clickCounter - 2]
+        ) {
+          //   checkArr.splice(0);
+          //   clickCounter = 0;
 
-square[1].addEventListener("click", () => {
-  gameImg[1].classList.toggle("hidden");
+          return;
+        }
+      }, 650);
+    });
 
-  checkArr.push(gameImg[1].alt);
-});
+    // checkArr.splice(0);
+  }
+})();
 
-square[2].addEventListener("click", () => {
-  gameImg[2].classList.toggle("hidden");
+//실험용
+// let clickCounter = 0;
 
-  checkArr.push(gameImg[2].alt);
-});
+// let check1 = checkArr[0 + clickCounter];
+// let check2 = checkArr[1 + clickCounter];
 
-square[3].addEventListener("click", () => {
-  gameImg[3].classList.toggle("hidden");
+// clickCounter 는 클릭이 한번 있을때마다 올라가는거지...
 
-  checkArr.push(gameImg[3].alt);
-});
+// 원본
+
+// square[0].addEventListener("click", () => {
+//   gameImg[0].classList.toggle("hidden");
+
+//   checkArr.push(gameImg[0].alt);
+
+//   setTimeout(() => {
+//     if (checkArr[0] !== checkArr[1]) {
+//       gameImg[0].classList.toggle("hidden");
+
+//       //   checkArr.splice(0);
+//     } else {
+//       return;
+//     }
+//   }, 1500);
+
+//   //   if (checkArr.length === 2) {
+//   //     checkArr.splice(0);
+//   //   }
+// });
+
+// square[1].addEventListener("click", () => {
+//   gameImg[1].classList.toggle("hidden");
+
+//   checkArr.push(gameImg[1].alt);
+
+//   setTimeout(() => {
+//     if (checkArr[0] !== checkArr[1]) {
+//       gameImg[1].classList.toggle("hidden");
+
+//       //   checkArr.splice(0);
+//     } else {
+//       return;
+//     }
+//   }, 1500);
+
+//   //   if (checkArr.length === 2) {
+//   //     checkArr.splice(0);
+//   //   }
+// });
+
+// square[2].addEventListener("click", () => {
+//   gameImg[2].classList.toggle("hidden");
+
+//   checkArr.push(gameImg[2].alt);
+
+//   setTimeout(() => {
+//     if (checkArr[0] !== checkArr[1]) {
+//       gameImg[2].classList.toggle("hidden");
+
+//       //   checkArr.splice(0);
+//     } else {
+//       return;
+//     }
+//   }, 1500);
+
+//   //   if (checkArr.length === 2) {
+//   //     checkArr.splice(0);
+//   //   }
+// });
+
+// square[3].addEventListener("click", () => {
+//   gameImg[3].classList.toggle("hidden");
+
+//   checkArr.push(gameImg[3].alt);
+
+//   setTimeout(() => {
+//     if (checkArr[0] !== checkArr[1]) {
+//       gameImg[3].classList.toggle("hidden");
+
+//       //   checkArr.splice(0);
+//     } else {
+//       return;
+//     }
+//   }, 1500);
+
+//   //   if (checkArr.length === 2) {
+//   //     checkArr.splice(0);
+//   //   }
+// });
 
 // for (let i = 0; i < square.length; i++) {
 //   square[i].addEventListener("click", () => {
