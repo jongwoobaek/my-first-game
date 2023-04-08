@@ -9,6 +9,7 @@ const gameImg = document.querySelectorAll(".game-img");
 const gameOverImg = document.querySelector("#game-over-img");
 
 // else
+const goal = document.querySelector("#num-of-fruits");
 const square = document.querySelectorAll(".square");
 const container = document.querySelector("#container");
 const h3 = document.querySelectorAll("h3");
@@ -18,8 +19,32 @@ const checkArr = [];
 const resultArr = [];
 let timerId;
 let clickCounter = 0;
+// let numOfFruits;
 
 // function
+// const changeImgHandler = throttle(changeImg, 1000);
+
+// function throttle(func, wait) {
+//   let waiting = true;
+
+//   return function () {
+//     if (waiting) {
+//       func();
+
+//       waiting = false;
+
+//       setTimeout(function () {
+//         waiting = true;
+//       }, wait);
+//     }
+//   };
+// }
+
+function changeNumOfFruits() {
+  let numOfFruits = Math.floor(2 - resultArr.length / 2);
+
+  goal.innerText = `남은 과일 수: ${numOfFruits}개`;
+}
 
 function startGame() {
   startBtn.classList.toggle("hidden");
@@ -43,11 +68,15 @@ function startGame() {
 
   resultArr.splice(0);
 
+  changeNumOfFruits();
+  setInterval(changeNumOfFruits, 0);
+
   timerId = setTimeout(() => {
     if (resultArr.length === 4) {
       clearTimeout(timerId);
       alert("🎉");
       location.reload();
+      //   console.log(resultArr);
 
       return;
     } else {
@@ -86,9 +115,11 @@ function reStartGame() {
   container.classList.toggle("hidden");
   checkArr.splice(0);
   clickCounter = 0;
+  checkId.splice(0);
 
   for (const el of square) {
     el.classList.toggle("hidden");
+    el.id = "";
   }
 
   for (const el of h3) {
@@ -114,22 +145,78 @@ function reStartGame2() {
   container.style.display = "";
   checkArr.splice(0);
   clickCounter = 0;
+  checkId.splice(0);
 
   for (const el of h3) {
     el.classList.toggle("hidden");
+  }
+
+  for (const el of square) {
+    el.id = "";
   }
 
   resultArr.splice(0);
 }
 
 // click event
+const checkId = [];
+
 startBtn.addEventListener("click", startGame);
 reStartBtn.addEventListener("click", reStartGame);
 reStartBtn2.addEventListener("click", reStartGame2);
 
-(function changeImg() {
-  for (let i = 0; i < square.length; i++) {
-    square[i].addEventListener("click", () => {
+// if (square[0].id !== checkId[0]) {
+//   (function changeImg() {
+//     for (let i = 0; i < square.length; i++) {
+//       square[i].addEventListener("click", () => {
+//         let imgId = Math.random();
+
+//         checkId.push(imgId);
+//         square[i].id = imgId;
+
+//         gameImg[i].classList.toggle("hidden");
+
+//         checkArr.push(gameImg[i].alt);
+
+//         clickCounter++;
+//         setTimeout(() => {
+//           if (
+//             checkArr.length < 2 ||
+//             checkArr[clickCounter - 1] !== checkArr[clickCounter - 2]
+//           ) {
+//             gameImg[i].classList.toggle("hidden");
+//             checkArr.splice(0);
+//             clickCounter = 0;
+
+//             checkId.splice(0);
+//             square[i].id = "";
+//           }
+
+//           if (
+//             checkArr.length >= 2 &&
+//             checkArr[clickCounter - 1] === checkArr[clickCounter - 2]
+//           ) {
+//             resultArr.push(checkArr[clickCounter - 1]);
+//             // resultArr.push(checkArr[clickCounter - 2]);
+
+//             return;
+//           }
+//         }, 650);
+//       });
+//     }
+//   })();
+// }
+
+//실험용
+
+for (let i = 0; i < square.length; i++) {
+  square[i].addEventListener("click", () => {
+    if (checkId[clickCounter - 1] !== Number(square[i].id)) {
+      let imgId = Math.random();
+
+      checkId.push(imgId);
+      square[i].id = imgId;
+
       gameImg[i].classList.toggle("hidden");
 
       checkArr.push(gameImg[i].alt);
@@ -143,6 +230,9 @@ reStartBtn2.addEventListener("click", reStartGame2);
           gameImg[i].classList.toggle("hidden");
           checkArr.splice(0);
           clickCounter = 0;
+
+          checkId.splice(0);
+          square[i].id = "";
         }
 
         if (
@@ -155,11 +245,46 @@ reStartBtn2.addEventListener("click", reStartGame2);
           return;
         }
       }, 650);
-    });
-  }
-})();
+    } else {
+      return;
+    }
+  });
+}
 
-//실험용
+// function changeImg() {
+//   for (let i = 0; i < square.length; i++) {
+//     square[i].addEventListener("click", () => {
+//       gameImg[i].classList.toggle("hidden");
+
+//       checkArr.push(gameImg[i].alt);
+
+//       clickCounter++;
+//       setTimeout(() => {
+//         if (
+//           checkArr.length < 2 ||
+//           checkArr[clickCounter - 1] !== checkArr[clickCounter - 2]
+//         ) {
+//           gameImg[i].classList.toggle("hidden");
+//           checkArr.splice(0);
+//           clickCounter = 0;
+//         }
+
+//         if (
+//           checkArr.length >= 2 &&
+//           checkArr[clickCounter - 1] === checkArr[clickCounter - 2]
+//         ) {
+//           resultArr.push(checkArr[clickCounter - 1]);
+//           // resultArr.push(checkArr[clickCounter - 2]);
+
+//           return;
+//         }
+//       }, 650);
+//     });
+//   }
+// }
+
+// changeImgHandler();
+
 // let clickCounter = 0;
 
 // let check1 = checkArr[0 + clickCounter];
