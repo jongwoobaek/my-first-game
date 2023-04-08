@@ -19,27 +19,9 @@ const checkArr = [];
 const resultArr = [];
 let timerId;
 let clickCounter = 0;
-// let numOfFruits;
+const checkId = [];
 
 // function
-// const changeImgHandler = throttle(changeImg, 1000);
-
-// function throttle(func, wait) {
-//   let waiting = true;
-
-//   return function () {
-//     if (waiting) {
-//       func();
-
-//       waiting = false;
-
-//       setTimeout(function () {
-//         waiting = true;
-//       }, wait);
-//     }
-//   };
-// }
-
 function changeNumOfFruits() {
   let numOfFruits = Math.floor(2 - resultArr.length / 2);
 
@@ -76,7 +58,6 @@ function startGame() {
       clearTimeout(timerId);
       alert("🎉");
       location.reload();
-      //   console.log(resultArr);
 
       return;
     } else {
@@ -119,7 +100,6 @@ function reStartGame() {
 
   for (const el of square) {
     el.classList.toggle("hidden");
-    el.id = "";
   }
 
   for (const el of h3) {
@@ -128,6 +108,7 @@ function reStartGame() {
 
   for (const img of gameImg) {
     img.className = "game-img hidden";
+    img.id = "";
   }
 
   resultArr.splice(0);
@@ -151,71 +132,29 @@ function reStartGame2() {
     el.classList.toggle("hidden");
   }
 
-  for (const el of square) {
-    el.id = "";
+  for (const img of gameImg) {
+    img.id = "";
   }
 
   resultArr.splice(0);
 }
 
 // click event
-const checkId = [];
 
 startBtn.addEventListener("click", startGame);
 reStartBtn.addEventListener("click", reStartGame);
 reStartBtn2.addEventListener("click", reStartGame2);
 
-// if (square[0].id !== checkId[0]) {
-//   (function changeImg() {
-//     for (let i = 0; i < square.length; i++) {
-//       square[i].addEventListener("click", () => {
-//         let imgId = Math.random();
-
-//         checkId.push(imgId);
-//         square[i].id = imgId;
-
-//         gameImg[i].classList.toggle("hidden");
-
-//         checkArr.push(gameImg[i].alt);
-
-//         clickCounter++;
-//         setTimeout(() => {
-//           if (
-//             checkArr.length < 2 ||
-//             checkArr[clickCounter - 1] !== checkArr[clickCounter - 2]
-//           ) {
-//             gameImg[i].classList.toggle("hidden");
-//             checkArr.splice(0);
-//             clickCounter = 0;
-
-//             checkId.splice(0);
-//             square[i].id = "";
-//           }
-
-//           if (
-//             checkArr.length >= 2 &&
-//             checkArr[clickCounter - 1] === checkArr[clickCounter - 2]
-//           ) {
-//             resultArr.push(checkArr[clickCounter - 1]);
-//             // resultArr.push(checkArr[clickCounter - 2]);
-
-//             return;
-//           }
-//         }, 650);
-//       });
-//     }
-//   })();
-// }
-
-//실험용
-
 for (let i = 0; i < square.length; i++) {
   square[i].addEventListener("click", () => {
-    if (checkId[clickCounter - 1] !== Number(square[i].id)) {
+    if (
+      checkId[clickCounter - 1] !== Number(gameImg[i].id) &&
+      gameImg[i].classList[1]
+    ) {
       let imgId = Math.random();
 
       checkId.push(imgId);
-      square[i].id = imgId;
+      gameImg[i].id = imgId;
 
       gameImg[i].classList.toggle("hidden");
 
@@ -232,7 +171,7 @@ for (let i = 0; i < square.length; i++) {
           clickCounter = 0;
 
           checkId.splice(0);
-          square[i].id = "";
+          gameImg[i].id = "";
         }
 
         if (
@@ -244,12 +183,14 @@ for (let i = 0; i < square.length; i++) {
 
           return;
         }
-      }, 650);
+      }, 750);
     } else {
       return;
     }
   });
 }
+
+//실험용
 
 // function changeImg() {
 //   for (let i = 0; i < square.length; i++) {
