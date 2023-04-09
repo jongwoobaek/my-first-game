@@ -97,4 +97,7 @@
  resultArr.push(gameImg[i].alt)
  gameImg[i].classList.remove('hidden')
 
-
+12. 이제 타이머를 만들어 보자.
+ 가. setInterval, 반복문을 사용하면 될가?
+ 나. setInterval 이 1초마다 실행되고 반복문을 통해 초를 1씩 낮추자.
+ 다. 그럼 기본값을 5로 설정하고 setIntervald은 4부터 1씩 줄어들게 해야겠네..
