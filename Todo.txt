@@ -91,4 +91,10 @@
 
   -- 오늘 안에 못끝내면 일단 관두고, 타이머부터 만들어 보자!
 
+  -- 0.6초 보다 빨리누르면 버그가 생기는듯
+
+자, 만약에 goal.innerText = 1 이고, gameImg[i].alt === resultArr[i]
+ resultArr.push(gameImg[i].alt)
+ gameImg[i].classList.remove('hidden')
+
 

@@ -21,10 +21,11 @@ let timerId;
 let timerId2;
 let clickCounter = 0;
 const checkId = [];
+let numOfFruits;
 
 // function
 function changeNumOfFruits() {
-  let numOfFruits = Math.floor(2 - resultArr.length / 2);
+  numOfFruits = Math.floor(2 - resultArr.length / 2);
 
   goal.innerText = `남은 과일 수: ${numOfFruits}개`;
 }
@@ -139,54 +140,6 @@ startBtn.addEventListener("click", startGame);
 reStartBtn.addEventListener("click", reStartGame);
 reStartBtn2.addEventListener("click", reStartGame2);
 
-// for (let i = 0; i < square.length; i++) {
-//   square[i].addEventListener("click", () => {
-//     if (
-//       checkId[clickCounter - 1] !== Number(gameImg[i].id) &&
-//       gameImg[i].classList[1]
-//     ) {
-//       let imgId = Math.random();
-
-//       checkId.push(imgId);
-//       gameImg[i].id = imgId;
-
-//       gameImg[i].classList.toggle("hidden");
-
-//       checkArr.push(gameImg[i].alt);
-
-//       clickCounter++;
-//       setTimeout(() => {
-//         if (
-//           checkArr.length < 2 ||
-//           checkArr[clickCounter - 1] !== checkArr[clickCounter - 2]
-//         ) {
-//           gameImg[i].classList.toggle("hidden");
-//           checkArr.splice(0);
-//           clickCounter = 0;
-
-//           checkId.splice(0);
-//           gameImg[i].id = "";
-//         }
-
-//         if (
-//           checkArr.length >= 2 &&
-//           checkArr[clickCounter - 1] === checkArr[clickCounter - 2]
-//         ) {
-//           resultArr.push(checkArr[clickCounter - 1]);
-//           //   clickCounter = 0;
-//           //   checkArr.splice(0);
-//           // resultArr.push(checkArr[clickCounter - 2]);
-
-//           return;
-//         }
-//       }, 650);
-//     } else {
-//       return;
-//     }
-//   });
-// }
-
-//실험용
 for (let i = 0; i < square.length; i++) {
   square[i].addEventListener("click", () => {
     if (
@@ -226,12 +179,9 @@ for (let i = 0; i < square.length; i++) {
             checkArr.length < 2 ||
             checkArr[clickCounter - 1] !== checkArr[clickCounter - 2]
           ) {
-            //   clearTimeout(timerId2);
-
             gameImg[i].classList.toggle("hidden");
             checkArr.splice(0);
             clickCounter = 0;
-
             checkId.splice(0);
             gameImg[i].id = "";
           }
@@ -252,21 +202,98 @@ for (let i = 0; i < square.length; i++) {
 
             return;
           }
+
+          if ((goal.innerText = 1 && gameImg[i].alt === resultArr[0])) {
+            alert("You should click slowly!!!!!!!!");
+            resultArr.push(gameImg[i].alt);
+
+            gameImg[i].classList.remove("hidden");
+          }
         }, 600);
       }
-
-      //   if (checkArr[0] !== checkArr[1] && checkArr.length >= 2) {
-      //     // clearTimeout(timerId2);
-      //     for (const img of gameImg) {
-      //       img.className = "game-img hidden";
-      //       img.id = "";
-      //     }
-      //   }
     } else {
       return;
     }
   });
 }
+
+//실험용
+// for (let i = 0; i < square.length; i++) {
+//   square[i].addEventListener("click", () => {
+//     if (
+//       checkId[clickCounter - 1] !== Number(gameImg[i].id) &&
+//       gameImg[i].classList[1] &&
+//       checkId.length < 2
+//     ) {
+//       let imgId = Math.random();
+
+//       checkId.push(imgId);
+//       gameImg[i].id = imgId;
+
+//       gameImg[i].classList.toggle("hidden");
+
+//       checkArr.push(gameImg[i].alt);
+
+//       clickCounter++;
+
+//       if (checkArr[0] !== checkArr[1] && checkArr.length >= 2) {
+//         clearTimeout(timerId2);
+
+//         setTimeout(() => {
+//           for (const img of gameImg) {
+//             img.className = "game-img hidden";
+//             img.id = "";
+//           }
+
+//           checkArr.splice(0);
+//           clickCounter = 0;
+
+//           checkId.splice(0);
+//           gameImg[i].id = "";
+//         }, 180);
+//       } else {
+//         timerId2 = setTimeout(() => {
+//           if (
+//             checkArr.length < 2 ||
+//             checkArr[clickCounter - 1] !== checkArr[clickCounter - 2]
+//           ) {
+//             gameImg[i].classList.toggle("hidden");
+//             checkArr.splice(0);
+//             clickCounter = 0;
+//             checkId.splice(0);
+//             gameImg[i].id = "";
+//           }
+
+//           if (
+//             checkArr.length >= 2 &&
+//             checkArr[clickCounter - 1] === checkArr[clickCounter - 2]
+//           ) {
+//             resultArr.push(checkArr[clickCounter - 1]);
+
+//             checkId.splice(0);
+
+//             if (resultArr.length === 4) {
+//               clearTimeout(timerId);
+//               alert("🎉");
+//               location.reload();
+//             }
+
+//             return;
+//           }
+
+//           if ((goal.innerText = 1 && gameImg[i].alt === resultArr[0])) {
+//             alert("You should click slowly!!!!!!!!");
+//             resultArr.push(gameImg[i].alt);
+
+//             gameImg[i].classList.remove("hidden");
+//           }
+//         }, 600);
+//       }
+//     } else {
+//       return;
+//     }
+//   });
+// }
 
 // function changeImg() {
 //   for (let i = 0; i < square.length; i++) {
