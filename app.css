@@ -1,3 +1,12 @@
+body {
+  display: flex;
+}
+
+/* #main-div {
+  align-items: center;
+  justify-content: center;
+} */
+
 #container {
   width: 425px;
   height: 425px;

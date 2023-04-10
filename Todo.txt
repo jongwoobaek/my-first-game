@@ -74,6 +74,7 @@
  제한시간 끝나면 다시 활성화 하고
 
 9. 정답을 맞추면 해당되는 사진들이 다시 클릭되지 않도록 하자.
+ 가. 조건물으로 해결해보자...
  해결!!!!!
 
 10. 이제 한 번에 2개 이상 클릭이 되지 않게 해보자.
@@ -101,3 +102,28 @@
  가. setInterval, 반복문을 사용하면 될가?
  나. setInterval 이 1초마다 실행되고 반복문을 통해 초를 1씩 낮추자.
  다. 그럼 기본값을 5로 설정하고 setIntervald은 4부터 1씩 줄어들게 해야겠네..
+
+13. 이미지 위치를 게임 시작할때마다 랜덤하게 지정하려면?
+ 가. 이미지 배열을 만들어 이미지 주소를 요소로 넣는다.(momentum 의 background.js 참고)
+ 나. randomImg 변수를 만든다. 
+ 다. 이미지 요소를 생성하는 변수를 만든다.
+ 라. 게임 시작하면, 각각의 square 에 이미지를 넣는다. 반복문 사용
+ 마. square[0].append(imges[0]) 이런식으로 되도록
+ 바. 그전에 gameImg = document.createElement("img"); 이런식으로 만든다.
+  1) gameImg.src, gameImg.alt, gameImg.class 지정한다.
+ 라. 이를 실행하는 함수를 만든다.
+ 마. 그리고 게임 시작버튼을 누를 때마다 실행되도록 한다.
+ 바. 게임 이미지를 빈 배열로 바꾸고 생성한 이미지들을 배열 안에 푸쉬하는 로직을 추가해야할듯
+ 사. 추가로 사진이 계속 불러와지지 않는다.
+  1) 이거 먼저 해결해야햘듯
+  
+
+
+ -- splice 써야할듯 
+
+
+ <img
+            class="game-img hidden"
+            src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGZydWl0c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
+            alt="cherry"
+          />

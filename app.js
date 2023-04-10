@@ -5,8 +5,17 @@ const reStartBtn2 = document.querySelector("#re-start-btn2");
 
 // imgs
 const mainImg = document.querySelector("#main-img");
-const gameImg = document.querySelectorAll(".game-img");
+// const gameImg = document.querySelectorAll(".game-img");
+const gameImg = [];
 const gameOverImg = document.querySelector("#game-over-img");
+const fruitsImgs = [
+  "strawberry.jpeg",
+  "strawberry.jpeg",
+  "cherry.jpeg",
+  "cherry.jpeg",
+];
+let duplicateFruitsImgs;
+// const allGameImgs = document.querySelectorAll(".game-img");
 
 // elements
 const goal = document.querySelector("#num-of-fruits");
@@ -16,6 +25,7 @@ const h3 = document.querySelectorAll("h3");
 const mainH1 = document.querySelector("#main-h1");
 const endH1 = document.querySelector("#endGame-h1");
 const gameTimer = document.querySelector("#game-timer");
+let randomImg;
 
 // else
 const checkArr = [];
@@ -27,8 +37,31 @@ const checkId = [];
 let numOfFruits;
 let remainingTime = 5;
 let timerChager;
+let img;
 
 // function
+function createFruitsImgs() {
+  duplicateFruitsImgs = fruitsImgs.slice();
+  for (let i = 0; i < 4; i++) {
+    img = document.createElement("img");
+
+    randomImg = duplicateFruitsImgs.splice(
+      [Math.floor(Math.random() * duplicateFruitsImgs.length)],
+      1
+    );
+    img.src = `imgs/${randomImg}`;
+    img.alt = randomImg;
+    img.className = "game-img hidden";
+
+    square[i].append(img);
+    gameImg.push(img);
+  }
+}
+
+// for (i = 0; i < fruitsImgs.length; i++) {
+//   let img = document.createElement("img");
+// }
+
 function changeNumOfFruits() {
   numOfFruits = Math.floor(2 - resultArr.length / 2);
 
@@ -40,6 +73,8 @@ function changeTimerText() {
 }
 
 function startGame() {
+  createFruitsImgs();
+
   changeTimerText();
 
   (function changeTimer() {
@@ -105,6 +140,14 @@ function startGame() {
 
       mainH1.innerText = "과일찾기";
       mainH1.style.color = "black";
+
+      gameImg.splice(0);
+
+      const allGameImgs = document.querySelectorAll(".game-img");
+
+      for (let i = 0; i < allGameImgs.length; i++) {
+        square[i].removeChild(allGameImgs[i]);
+      }
     } else {
       return;
     }
@@ -114,6 +157,8 @@ function startGame() {
 // 리셋버튼을 두개를 만들어야 할듯..
 // 일단 얘는 게임 중간용이라 하자.
 function reStartGame() {
+  //   createFruitsImgs();
+
   clearTimeout(timerId);
 
   startBtn.classList.toggle("hidden");
@@ -144,9 +189,19 @@ function reStartGame() {
 
   mainH1.innerText = "과일찾기";
   mainH1.style.color = "black";
+
+  gameImg.splice(0);
+
+  const allGameImgs = document.querySelectorAll(".game-img");
+
+  for (let i = 0; i < allGameImgs.length; i++) {
+    square[i].removeChild(allGameImgs[i]);
+  }
 }
 
 function reStartGame2() {
+  //   createFruitsImgs();
+
   clearTimeout(timerId);
 
   startBtn.classList.toggle("hidden");
@@ -172,6 +227,14 @@ function reStartGame2() {
 
   clearInterval(timerChager);
   remainingTime = 5;
+
+  gameImg.splice(0);
+
+  const allGameImgs = document.querySelectorAll(".game-img");
+
+  for (let i = 0; i < allGameImgs.length; i++) {
+    square[i].removeChild(allGameImgs[i]);
+  }
 }
 
 // click event
