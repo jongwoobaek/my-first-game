@@ -36,7 +36,7 @@ let clickCounter = 0;
 const checkId = [];
 let numOfFruits;
 let remainingTime = 5;
-let timerChager;
+let timerChanger;
 let img;
 
 // function
@@ -78,7 +78,7 @@ function startGame() {
   changeTimerText();
 
   (function changeTimer() {
-    timerChager = setInterval(() => {
+    timerChanger = setInterval(() => {
       remainingTime--;
 
       changeTimerText();
@@ -113,7 +113,7 @@ function startGame() {
   timerId = setTimeout(() => {
     if (numOfFruits === 0) {
       clearTimeout(timerId);
-      clearInterval(timerChager);
+      clearInterval(timerChanger);
       alert("🎉");
       location.reload();
     }
@@ -136,7 +136,7 @@ function startGame() {
         img.className = "game-img hidden";
       }
 
-      clearInterval(timerChager);
+      clearInterval(timerChanger);
 
       mainH1.innerText = "과일찾기";
       mainH1.style.color = "black";
@@ -184,7 +184,7 @@ function reStartGame() {
 
   resultArr.splice(0);
 
-  clearInterval(timerChager);
+  clearInterval(timerChanger);
   remainingTime = 5;
 
   mainH1.innerText = "과일찾기";
@@ -225,7 +225,7 @@ function reStartGame2() {
 
   resultArr.splice(0);
 
-  clearInterval(timerChager);
+  clearInterval(timerChanger);
   remainingTime = 5;
 
   gameImg.splice(0);
@@ -245,10 +245,16 @@ reStartBtn2.addEventListener("click", reStartGame2);
 
 for (let i = 0; i < square.length; i++) {
   square[i].addEventListener("click", () => {
+    if ((goal.innerText = 1 && resultArr.length === 1)) {
+      mainH1.innerText = "천천히 누르세요!!!!";
+      mainH1.style.color = "red";
+    }
+
     if (
       checkId[clickCounter - 1] !== Number(gameImg[i].id) &&
       gameImg[i].classList[1] &&
-      checkId.length < 2
+      checkId.length < 2 &&
+      resultArr.length !== 1
     ) {
       let imgId = Math.random();
 
@@ -282,7 +288,7 @@ for (let i = 0; i < square.length; i++) {
             checkArr.length < 2 ||
             checkArr[clickCounter - 1] !== checkArr[clickCounter - 2]
           ) {
-            gameImg[i].classList.toggle("hidden");
+            gameImg[i].classList.toggle("hidden"); // 이거 수정해야할듯
             checkArr.splice(0);
             clickCounter = 0;
             checkId.splice(0);
@@ -299,21 +305,12 @@ for (let i = 0; i < square.length; i++) {
 
             if (resultArr.length === 4) {
               clearTimeout(timerId);
-              clearInterval(timerChager);
+              clearInterval(timerChanger);
               alert("🎉");
               location.reload();
             }
 
             return;
-          }
-
-          if ((goal.innerText = 1 && gameImg[i].alt === resultArr[0])) {
-            mainH1.innerText = "천천히 누르세요!!!!";
-            mainH1.style.color = "red";
-            // alert("You should click slowly!!!!!!!!");
-            resultArr.push(gameImg[i].alt);
-
-            gameImg[i].classList.remove("hidden");
           }
         }, 600);
       }
@@ -324,6 +321,10 @@ for (let i = 0; i < square.length; i++) {
 }
 
 //실험용
+
+// setInterval(() => {
+//   console.log(resultArr);
+// }, 200);
 // let you = 5;
 
 // console.log(you);
@@ -335,10 +336,16 @@ for (let i = 0; i < square.length; i++) {
 
 // for (let i = 0; i < square.length; i++) {
 //   square[i].addEventListener("click", () => {
+//     if ((goal.innerText = 1 && resultArr.length === 1)) {
+//       mainH1.innerText = "천천히 누르세요!!!!";
+//       mainH1.style.color = "red";
+//     }
+
 //     if (
 //       checkId[clickCounter - 1] !== Number(gameImg[i].id) &&
 //       gameImg[i].classList[1] &&
-//       checkId.length < 2
+//       checkId.length < 2 &&
+//       resultArr.length !== 1
 //     ) {
 //       let imgId = Math.random();
 
@@ -372,7 +379,7 @@ for (let i = 0; i < square.length; i++) {
 //             checkArr.length < 2 ||
 //             checkArr[clickCounter - 1] !== checkArr[clickCounter - 2]
 //           ) {
-//             gameImg[i].classList.toggle("hidden");
+//             gameImg[i].classList.toggle("hidden"); // 이거 수정해야할듯
 //             checkArr.splice(0);
 //             clickCounter = 0;
 //             checkId.splice(0);
@@ -389,6 +396,7 @@ for (let i = 0; i < square.length; i++) {
 
 //             if (resultArr.length === 4) {
 //               clearTimeout(timerId);
+//               clearInterval(timerChanger);
 //               alert("🎉");
 //               location.reload();
 //             }
@@ -396,12 +404,14 @@ for (let i = 0; i < square.length; i++) {
 //             return;
 //           }
 
-//           if ((goal.innerText = 1 && gameImg[i].alt === resultArr[0])) {
-//             alert("You should click slowly!!!!!!!!");
-//             resultArr.push(gameImg[i].alt);
+//           //   if ((goal.innerText = 1 && gameImg[i].alt === resultArr[0])) {
+//           //     mainH1.innerText = "천천히 누르세요!!!!";
+//           //     mainH1.style.color = "red";
+//           //     // alert("You should click slowly!!!!!!!!");
+//           //     resultArr.push(gameImg[i].alt);
 
-//             gameImg[i].classList.remove("hidden");
-//           }
+//           //     gameImg[i].classList.remove("hidden");
+//           //   }
 //         }, 600);
 //       }
 //     } else {

@@ -2,10 +2,38 @@ body {
   display: flex;
 }
 
-/* #main-div {
-  align-items: center;
-  justify-content: center;
-} */
+h1 {
+  margin-bottom: 0.1em;
+}
+
+h3 {
+  margin: 1em 2em;
+}
+
+button {
+  width: 7em;
+  height: 3em;
+  margin: 1em;
+  padding: auto;
+  font-size: 1em;
+  font-weight: bold;
+  background-color: yellow;
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: translateY(-0.15em);
+  cursor: pointer;
+  border-radius: 0.5em;
+}
+
+button:active {
+  transform: scale(1.125);
+}
+
+#main-div {
+  text-align: center;
+}
 
 #container {
   width: 425px;
